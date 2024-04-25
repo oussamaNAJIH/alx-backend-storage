@@ -1,11 +1,11 @@
 -- trigger that decreases the quantity of an item after adding a new order
 DELIMITER $$
-CREATE TRIGGER after_email_update
-AFTER UPDATE ON users
+CREATE TRIGGER after_new_order
+AFTER INSERT ON orders
 FOR EACH ROW
 BEGIN
-    IF OLD.email != NEW.email THEN
-        SET NEW.valid_email = 0;
-    END IF;
+    UPDATE items
+    SET quantity = quantity - NEW.number
+    WHERE name = NEW.item_name
 END$$
 DELIMITER ;
