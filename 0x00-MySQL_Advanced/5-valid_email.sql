@@ -5,6 +5,6 @@ AFTER UPDATE ON users.email
 FOR EACH ROW
 BEGIN
     UPDATE users
-    SET NEW.valid_email = 0
+    SET NEW.valid_email = 0;
 END$$
 DELIMITER ;
